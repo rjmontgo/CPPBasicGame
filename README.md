@@ -1,2 +1,2 @@
 # CPPBasicGame
-Dice rolling game used to learn C++.
+Black Jack game used to learn C++.
