@@ -83,3 +83,16 @@ void Deck::shuffle() {
     deck[index2] = hold;
   }
 }
+
+Card Deck::draw() {
+  Card ret = deck.back();
+  deck.pop_back();
+  return ret;
+}
+
+void Deck::returnHand(vector<Card> vect) {
+  for (vector<Card>::iterator iter = vect.begin(); iter != deck.end(); iter++) {
+    deck.push_back(*iter);
+  }
+  this->shuffle();
+}

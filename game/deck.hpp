@@ -31,4 +31,8 @@ public:
   void printDeck();
 
   void shuffle();
+
+  Card draw();
+
+  void returnHand(std::vector<Card> vect);
 };
