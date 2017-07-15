@@ -1,3 +1,6 @@
+#ifndef DECK
+#define DECK
+
 #include <string>
 #include <vector>
 #include <map>
@@ -8,21 +11,21 @@
  */
 class Card {
 
-  string name;
+  std::string name;
   int value;
-  string suit;
+  std::string suit;
 
 public:
-  Card(string name, int value, string suit);
+  Card(std::string name, int value, std::string suit);
 
-  string toString();
+  std::string toString();
 
-  string getName();
+  std::string getName();
 
   int getValue();
 
-  string getSuit();
-}
+  std::string getSuit();
+};
 
 
 
@@ -33,14 +36,19 @@ public:
  */
 class Deck {
 
-  vector<Card *> *cards;
-  map<string, int> *cardMapping;
+  std::vector<Card *> *cards;
+  std::map<std::string, int> *cardMapping;
 public:
   Deck(int numOfDecks);
 
   Card *draw();
 
-  string printDeck();
+  std::string printDeck();
 
-  void returnHand(vector<Card *> hand);
-}
+  void returnHand(std::vector<Card *> hand);
+
+  void shuffle();
+};
+
+
+#endif
