@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unistd.h>
-#include "interface.h"
+#include "interface.hpp"
 
 using namespace std;
 

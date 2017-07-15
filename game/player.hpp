@@ -1,12 +1,21 @@
+#include "deck.hpp"
+#include <vector>
+#include <string>
+
+#ifndef PLAYER
+#define PLAYER 1
 class Player {
-  vector<Card> hand;
+  std::vector<Card> hand;
   int cash;
 
+public:
   Player(int cash);
 
-  drawCard();
+  void drawCard(Card card);
 
-  returnPlayerHand();
+  std::vector<Card> returnPlayerHand();
+
+  std::string stringHand();
 
 };
-
+#endif

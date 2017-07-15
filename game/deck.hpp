@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#ifndef CARD
+#define CARD 1
 class Card {
   std::string name;
   std::string suit;
@@ -36,3 +38,5 @@ public:
 
   void returnHand(std::vector<Card> vect);
 };
+
+#endif

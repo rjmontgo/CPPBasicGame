@@ -1,4 +1,4 @@
-#include "interface.h"
+#include "interface.hpp"
 #include <iostream>
 #include <limits>
 
@@ -42,4 +42,18 @@ void displayOpeningOptions()
   cout << "3) Quit" << endl;
   cout << "Choice: ";
 
+}
+
+
+int playRoundMenu() {
+  int choice = -1;
+  cout << "Would you like to play a round?" << endl << "1) Yes" << endl << "2) No" << endl;
+  while (!(cin >> choice) || !(choice == 1 || choice == 2)) {
+    cout << endl << "You did not enter a valid option." << endl;
+    cout << "Would you like to play a round?" << endl << "1) Yes" << endl << "2) No" << endl;
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  }
+
+  return choice;
 }
