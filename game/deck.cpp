@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <iostream>
+#include <cstdlib>
+#include <math.h>
 
 #define DECK_SIZE 52
 #define NUM_SUITS 4
@@ -15,7 +18,11 @@ Card::Card(string name, int value, string suit) {
 }
 
 string Card::toString() {
-  return this->name + " of " + this->suit;
+  string test = "";
+  test += this->name;
+  test += " of ";
+  test += this->suit;
+  return test;
 }
 
 string Card::getName() {
@@ -35,6 +42,7 @@ string Card::getSuit() {
 Deck::Deck(int numOfDecks) {
   cardMapping = new map<string, int>();
   cards = new vector<Card *>();
+  numCards = numOfDecks * DECK_SIZE;
 
   (*cardMapping)["Two"] = 2;
   (*cardMapping)["Three"] = 3;
@@ -65,20 +73,39 @@ Card *Deck::draw() {
   //pop_back will just remove the pointer and not delete the objec
   Card *ret = cards->back();
   cards->pop_back();
-  return // NOT DONE HERE ret;
+  return ret;
 }
 
 /**
     This method is used for debugging purposes only and serves no use in the game.
  */
-void Deck::printDeck() {
-  
+string Deck::printDeck() {
+  string ret = "";
+  for (vector<Card *>::iterator iter = cards->begin(); iter != cards->end(); iter++) {
+    ret += (*iter)->toString() + "\n";
+  }
+  return ret;
 }
 
-void Deck::returnHand(vector<Card *> hand) {
-
+void Deck::returnHand(vector<Card *> *hand) {
+  for (vector<Card *>::iterator iter = hand->begin(); iter != hand->end(); iter++) {
+    cards->push_back((*iter));
+  }
+  hand->erase(hand->begin());
+  delete hand;
 }
 
+/**
+    https://math.stackexchange.com/questions/127492/how-many-2-card-swaps-until-a-card-deck-is-close-to-true-random
+ */
 void Deck::shuffle() {
-
+  int index1, index2, numSwaps = ceil((0.5) * numCards * log( numCards ));
+  srand(time(NULL));
+  for (int i = 0; i < numSwaps; i++) {
+    index1 = rand() % numCards;
+    index2 = rand() % numCards;
+    Card *hold = (*cards)[index1];
+    (*cards)[index1] = (*cards)[index2];
+    (*cards)[index2] = hold;
+  }
 }

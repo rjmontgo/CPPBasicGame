@@ -36,8 +36,10 @@ public:
  */
 class Deck {
 
+  int numCards;
   std::vector<Card *> *cards;
   std::map<std::string, int> *cardMapping;
+
 public:
   Deck(int numOfDecks);
 
@@ -45,7 +47,7 @@ public:
 
   std::string printDeck();
 
-  void returnHand(std::vector<Card *> hand);
+  void returnHand(std::vector<Card *> *hand);
 
   void shuffle();
 };
