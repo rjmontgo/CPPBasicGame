@@ -1,7 +1,10 @@
-#include "player.hpp"
 #include "deck.hpp"
+#include "player.hpp"
 #include <string>
 #include <vector>
+#include <iostream>
+
+using namespace std;
 
 Player::Player( int cash ) {
   this->cash = cash;
@@ -36,11 +39,11 @@ int Player::getHandValue() {
 }
 
 vector<Card *> *Player::returnHand() {
-  vector<Card *> ret = new vector<Card *>();
+  vector<Card *> *ret = new vector<Card *>();
   for ( vector<Card *>::iterator iter = hand->begin(); iter != hand->end(); iter++) {
     ret->push_back((*iter));
   }
-  hand->erase(hand->begin());
+  hand->erase(hand->begin(), hand->end());
 
   return ret;
 }

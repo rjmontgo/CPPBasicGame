@@ -91,7 +91,7 @@ void Deck::returnHand(vector<Card *> *hand) {
   for (vector<Card *>::iterator iter = hand->begin(); iter != hand->end(); iter++) {
     cards->push_back((*iter));
   }
-  hand->erase(hand->begin());
+  hand->erase(hand->begin(), hand->end());
   delete hand;
 }
 
