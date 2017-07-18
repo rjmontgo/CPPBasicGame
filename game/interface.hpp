@@ -4,5 +4,5 @@ int openingMenu();
 
 int playRoundMenu();
 
-int playHand();
+void endGameNoMoney();
 #endif

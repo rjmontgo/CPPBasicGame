@@ -59,3 +59,8 @@ int playRoundMenu() {
 
   return choice;
 }
+
+
+void endGameNoMoney() {
+  cout << "Not enough money to make minimum bid." << endl << "Quitting game." << endl;
+}
