@@ -25,10 +25,28 @@ void playGame(Deck *deck, Player *player) {
     player->addCardToHand(deck->draw());
 
     // Place bets
+    int betsize = placePlayerBetMenu(player->getCash());
 
     // Dealers turn. (Hit until 17 is reached)
+    dealerTurnStart(deck->getHandValue(dealerHand));
+    int val;
+    while ( deck->getHandValue(dealerHand) < 17 ) {
+      dealerHand->push_back(deck->draw());
+      dealerTurnHit(deck->getHandValue(dealerHand));
+    }
+
+    int dealerHandVal = deck->getHandValue(dealerHand);
+    dealerTurnEnd(dealerHandVal);
+
+    if (dealerHandVal > 21) {
+      player->addCash(betsize * 2);
+      deck->returnHand(dealerHand);
+      deck->returnHand(player->returnHand());
+      continue;
+    }
 
     // Players turn. (let player decide what to do)
+    playerMenu
 
     // Reset deck and player hands
   }
@@ -49,7 +67,4 @@ int main() {
 
   if (choice == 1) {
     newGame();
-  } else if (choice == 2) {
-    // load game
-  }
 }

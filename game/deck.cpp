@@ -92,7 +92,21 @@ void Deck::returnHand(vector<Card *> *hand) {
     cards->push_back((*iter));
   }
   hand->erase(hand->begin(), hand->end());
-  delete hand;
+}
+
+int Deck::getHandValue(vector<Card *> *hand) {
+  bool aceFlag = false;
+  int sum = 0;
+  for(vector<Card *>::iterator iter = hand->begin(); iter != hand->end(); iter++) {
+    if ((*iter)->getValue() == 11)
+      aceFlag = true;
+    sum += (*iter)->getValue();
+  }
+
+  if (sum > 21 && aceFlag)
+    sum -= 10; // Subtracting 11 and adding 1
+
+  return sum;
 }
 
 /**

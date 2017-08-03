@@ -49,6 +49,8 @@ public:
   void returnHand(std::vector<Card *> *hand);
 
   void shuffle();
+
+  int getHandValue(std::vector<Card *> *hand);
 };
 
 

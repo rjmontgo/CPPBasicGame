@@ -1,4 +1,5 @@
 #include "interface.hpp"
+#include <unistd.h>
 #include <iostream>
 #include <limits>
 
@@ -63,4 +64,43 @@ int playRoundMenu() {
 
 void endGameNoMoney() {
   cout << "Not enough money to make minimum bid." << endl << "Quitting game." << endl;
+}
+
+int placePlayerBetMenu(int playerMoney) {
+  int amount = -1;
+  cout << "Enter an amount to bet" << endl << endl << "Must be atleast 100" << endl << endl;
+  cout << "You have " << playerMoney << " dollars to bet." << endl << "Amount: ";
+  while (!(cin >> amount) || !(amount >= 100 && amount <= playerMoney)) {
+    cout << endl << "You did not enter a valid amount." << endl;
+    cout << "Enter an amount to bet" << endl << "Must be atleast 100" << endl << endl << "Amount: ";
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  }
+
+  return amount;
+}
+
+void dealerTurnStart( int value ) {
+  cout << endl << "Dealer turn has started." << endl << "Dealer hand value: " << value << flush;
+  // Sleeping to slow down time between dealer hits, so player can read it easily.
+  sleep(1);
+}
+
+void dealerTurnHit( int value ) {
+  cout << endl << "Dealer hits." << endl << "Dealer hand value: " << value << flush;
+  //Sleeping to slow down time between dealer hits, so player can read it easily.
+  sleep(1);
+}
+
+void dealerTurnEnd( int value ) {
+  if ( value > 21) {
+    cout << endl << "Dealer busts." << endl;
+    cout << "You win the round!";
+  } else {
+    cout << endl << "Dealer stands." << endl << "Dealer hand value: " << value << endl;
+  }
+}
+
+void playerMenu( int handValue ) {
+  cout << "What would you like to do?" << endl;
 }
