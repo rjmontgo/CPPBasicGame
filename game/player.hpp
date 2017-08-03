@@ -1,6 +1,7 @@
 #ifndef PLAYER
 #define PLAYER
 
+#include "deck.hpp"
 #include <string>
 #include <vector>
 

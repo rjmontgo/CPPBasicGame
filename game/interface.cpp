@@ -1,4 +1,5 @@
 #include "interface.hpp"
+#include "player.hpp"
 #include <unistd.h>
 #include <iostream>
 #include <limits>
@@ -101,6 +102,24 @@ void dealerTurnEnd( int value ) {
   }
 }
 
-void playerMenu( int handValue ) {
-  cout << "What would you like to do?" << endl;
+int playerMenu( Player *player ) {
+  cout << endl << "Your hand is:" << endl << player->handToString() << endl;
+  cout << "What would you like to do?" << endl << "1) Hit" << endl << "2) Stand" << endl;
+  cout << "Choice: ";
+  int choice = -1;
+  while (!(cin >> choice) || !(choice == 1 || choice == 2)) {
+    cout << endl << "You did not enter a valid option" << endl;
+    cout << "What would you like to do?" << endl << "1) Hit" << endl << "2) Stand" << endl;
+    cout << "Choice: ";
+  }
+  return choice;
 }
+
+void playerBust() {
+  cout << endl << "You busted!" << endl;
+}
+
+void playerWin() {
+  cout << endl << "You Won!" << endl;
+}
+
